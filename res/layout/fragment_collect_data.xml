@@ -8,84 +8,86 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.wisconsinandroids.CollectData$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="20dp"
-        android:text="X:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="Y:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:text="Z:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/StartButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/IP_Address_Target"
+        android:layout_below="@+id/IP_Address_Target"
         android:layout_marginTop="49dp"
-        android:text="Start" />
+        android:text="@string/start_button" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/StopButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignRight="@+id/editText1"
-        android:text="Stop" />
+        android:layout_alignBaseline="@+id/StartButton"
+        android:layout_alignBottom="@+id/StartButton"
+        android:layout_alignRight="@+id/IP_Address_Target"
+        android:text="@string/stop_button" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/IP_Address_Target"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/AccelZ"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
         android:ems="10"
-        android:inputType="number" >
+        android:inputType="numberDecimal" >
 
         <requestFocus />
     </EditText>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/AccelX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:text="GPS Status:"
+        android:layout_alignLeft="@+id/AccelY"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/IP_Address_Target"
+        android:layout_marginTop="42dp"
+        android:text="@string/accel_x"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/AccelZ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/textView5"
-        android:text="GPS String:"
+        android:layout_alignLeft="@+id/GPS_Status"
+        android:layout_alignRight="@+id/IP_Address_Target"
+        android:layout_below="@+id/AccelY"
+        android:text="@string/accel_z"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/AccelY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AccelZ"
+        android:layout_alignRight="@+id/IP_Address_Target"
+        android:layout_below="@+id/AccelX"
+        android:text="@string/accel_y"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GPS_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/GPS_String"
+        android:layout_below="@+id/AccelZ"
+        android:text="@string/gps_status"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GPS_String"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/IP_Address_Target"
+        android:layout_below="@+id/GPS_Status"
+        android:text="@string/gps_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

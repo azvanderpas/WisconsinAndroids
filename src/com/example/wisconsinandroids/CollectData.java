@@ -21,12 +21,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.location.*;
+import android.widget.Button;
 
-public class CollectData extends ActionBarActivity implements SensorEventListener, GpsStatus.Listener, GpsStatus.NmeaListener{
+public class CollectData extends ActionBarActivity implements SensorEventListener, GpsStatus.Listener, GpsStatus.NmeaListener, View.OnClickListener{
 	
 	private SensorManager mSensorManager;
 	private Sensor mAccelerometer;
 	private LocationManager mGPS;
+	private TextView AccelX, AccelY, AccelZ, GPS_String, GPS_Status;
+	private Button start, stop;
+	private boolean started = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,13 @@ public class CollectData extends ActionBarActivity implements SensorEventListene
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		
+
+		GPS_String = (TextView) findViewById(R.id.GPS_String);
+		GPS_Status = (TextView) findViewById(R.id.GPS_Status);
+        start = (Button) findViewById(R.id.StartButton);//Returns NULL...
+        stop = (Button) findViewById(R.id.StopButton);// Returns NULL...
+        
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mGPS = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -45,7 +56,11 @@ public class CollectData extends ActionBarActivity implements SensorEventListene
         
         mGPS.addGpsStatusListener(this);
         mGPS.addNmeaListener(this);
+        
+        start.setOnClickListener(this);
+        stop.setOnClickListener(this);
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,7 +115,12 @@ public class CollectData extends ActionBarActivity implements SensorEventListene
 	public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER)
             return;
-		
+		AccelX = (TextView) findViewById(R.id.AccelX);
+		AccelY = (TextView) findViewById(R.id.AccelY);
+		AccelZ = (TextView) findViewById(R.id.AccelZ);
+        AccelX.setText("X:" + event.values[0]);
+        AccelY.setText("Y:" + event.values[1]);
+        AccelZ.setText("Z:" + event.values[2]);
 	}
 
 	@Override
@@ -108,5 +128,19 @@ public class CollectData extends ActionBarActivity implements SensorEventListene
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public void onClick(View v) {
+    	if(v.getId() == start.getId())
+    	{
+    		started = true;
+    	}
+    	else if(v.getId() == stop.getId())
+    	{
+    		started = false;
+    	}
+        // Do something in response to button click
+    	stop.setClickable(started);
+    	start.setClickable(!started);
+    }
 
 }
