@@ -1,7 +1,6 @@
 package com.example.wisconsinandroids;
 
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -16,12 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.TextView;
-import android.app.Activity;
-import android.app.PendingIntent;
-import android.os.Bundle;
-import android.view.WindowManager;
 import android.location.*;
 import android.widget.Button;
 
@@ -43,7 +37,7 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 	private Sensor mAccelerometer;
 	private LocationManager mGPS;
 	private TextView AccelX, AccelY, AccelZ, GPS_String, GPS_Status, Latitude, Longitude;
-	private Button start, stop;
+	private Button startStop;
 	private boolean started = false;
 
 	@Override
@@ -76,10 +70,8 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 		getMenuInflater().inflate(R.menu.collect_data, menu);
 		
 
-        start = (Button) findViewById(R.id.StartButton);
-        stop = (Button) findViewById(R.id.StopButton);
-        start.setOnClickListener(this);
-        stop.setOnClickListener(this);
+        startStop = (Button) findViewById(R.id.StartStopButton);
+        startStop.setOnClickListener(this);
 		return true;
 	}
 
@@ -156,17 +148,8 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 	}
 	
     public void onClick(View v) {
-    	if(v.getId() == start.getId())
-    	{
-    		started = true;
-    	}
-    	else if(v.getId() == stop.getId())
-    	{
-    		started = false;
-    	}
-        // Do something in response to button click
-    	stop.setClickable(started);
-    	start.setClickable(!started);
+    	started = !started;
+    	startStop.setText((started ? "Stop" : "Start"));
     }
 
 

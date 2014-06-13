@@ -14,5 +14,6 @@
     <string name="latitude">Lat:</string>
     <string name="longtitude">Long:</string>
     <string name="longitude">Long:</string>
+    <string name="label1">IP Address:</string>
 
 </resources>

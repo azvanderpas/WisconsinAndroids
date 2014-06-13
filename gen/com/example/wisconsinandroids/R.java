@@ -1080,16 +1080,16 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020057;
     }
     public static final class id {
-        public static final int AccelX=0x7f050041;
-        public static final int AccelY=0x7f050042;
-        public static final int AccelZ=0x7f050040;
-        public static final int GPS_Status=0x7f050043;
-        public static final int GPS_String=0x7f050044;
-        public static final int IP_Address_Target=0x7f05003e;
-        public static final int Latitude=0x7f050045;
-        public static final int Longitude=0x7f050046;
-        public static final int StartButton=0x7f05003d;
-        public static final int StopButton=0x7f05003f;
+        public static final int AccelX=0x7f05003f;
+        public static final int AccelY=0x7f050040;
+        public static final int AccelZ=0x7f05003e;
+        public static final int GPS_Status=0x7f050041;
+        public static final int GPS_String=0x7f050042;
+        public static final int IP_Address_Target=0x7f05003d;
+        public static final int Label1=0x7f050046;
+        public static final int Latitude=0x7f050043;
+        public static final int Longitude=0x7f050044;
+        public static final int StartStopButton=0x7f050045;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
         public static final int action_bar_container=0x7f05001b;
@@ -1259,6 +1259,7 @@ containing a value of this type.
         public static final int gps_status=0x7f0a0014;
         public static final int gps_string=0x7f0a0015;
         public static final int hello_world=0x7f0a000e;
+        public static final int label1=0x7f0a001a;
         public static final int latitude=0x7f0a0017;
         public static final int longitude=0x7f0a0019;
         public static final int longtitude=0x7f0a0018;

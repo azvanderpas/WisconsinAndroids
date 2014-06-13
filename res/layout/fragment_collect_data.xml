@@ -8,26 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.wisconsinandroids.CollectData$PlaceholderFragment" >
 
-    <Button
-        android:id="@+id/StartButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/IP_Address_Target"
-        android:layout_below="@+id/IP_Address_Target"
-        android:layout_marginTop="49dp"
-        android:text="@string/start_button" />
-
-    <Button
-        android:id="@+id/StopButton"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/StartButton"
-        android:layout_alignBottom="@+id/StartButton"
-        android:layout_alignRight="@+id/IP_Address_Target"
-        android:text="@string/stop_button" />
-
     <EditText
         android:id="@+id/IP_Address_Target"
         android:layout_width="wrap_content"
@@ -36,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
         android:ems="10"
-        android:inputType="numberDecimal" >
+        android:inputType="textNoSuggestions" >
 
         <requestFocus />
     </EditText>
@@ -110,6 +90,25 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/Latitude"
         android:text="@string/longitude"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/StartStopButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/start_button" />
+
+    <TextView
+        android:id="@+id/Label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/IP_Address_Target"
+        android:layout_alignBottom="@+id/IP_Address_Target"
+        android:layout_toLeftOf="@+id/IP_Address_Target"
+        android:text="@string/label1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
