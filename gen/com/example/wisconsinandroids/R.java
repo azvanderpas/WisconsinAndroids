@@ -1086,6 +1086,8 @@ containing a value of this type.
         public static final int GPS_Status=0x7f050043;
         public static final int GPS_String=0x7f050044;
         public static final int IP_Address_Target=0x7f05003e;
+        public static final int Latitude=0x7f050045;
+        public static final int Longitude=0x7f050046;
         public static final int StartButton=0x7f05003d;
         public static final int StopButton=0x7f05003f;
         public static final int action_bar=0x7f05001c;
@@ -1099,7 +1101,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050045;
+        public static final int action_settings=0x7f050047;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1257,6 +1259,9 @@ containing a value of this type.
         public static final int gps_status=0x7f0a0014;
         public static final int gps_string=0x7f0a0015;
         public static final int hello_world=0x7f0a000e;
+        public static final int latitude=0x7f0a0017;
+        public static final int longitude=0x7f0a0019;
+        public static final int longtitude=0x7f0a0018;
         public static final int start_button=0x7f0a0012;
         public static final int stop_button=0x7f0a0013;
     }

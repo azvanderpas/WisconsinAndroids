@@ -241,6 +241,8 @@ int id AccelZ 0x7f050040
 int id GPS_Status 0x7f050043
 int id GPS_String 0x7f050044
 int id IP_Address_Target 0x7f05003e
+int id Latitude 0x7f050045
+int id Longitude 0x7f050046
 int id StartButton 0x7f05003d
 int id StopButton 0x7f05003f
 int id action_bar 0x7f05001c
@@ -254,7 +256,7 @@ int id action_context_bar 0x7f05001d
 int id action_menu_divider 0x7f050016
 int id action_menu_presenter 0x7f050017
 int id action_mode_close_button 0x7f050024
-int id action_settings 0x7f050045
+int id action_settings 0x7f050047
 int id activity_chooser_view_content 0x7f050025
 int id always 0x7f05000b
 int id beginning 0x7f050011
@@ -355,6 +357,9 @@ int string app_name 0x7f0a000d
 int string gps_status 0x7f0a0014
 int string gps_string 0x7f0a0015
 int string hello_world 0x7f0a000e
+int string latitude 0x7f0a0017
+int string longitude 0x7f0a0019
+int string longtitude 0x7f0a0018
 int string start_button 0x7f0a0012
 int string stop_button 0x7f0a0013
 int style AppBaseTheme 0x7f0b008b

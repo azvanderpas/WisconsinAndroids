@@ -11,5 +11,8 @@
     <string name="gps_status">GPS Status:</string>
     <string name="gps_string">GPS String:</string>
     <string name="accel_x">X:</string>
+    <string name="latitude">Lat:</string>
+    <string name="longtitude">Long:</string>
+    <string name="longitude">Long:</string>
 
 </resources>
