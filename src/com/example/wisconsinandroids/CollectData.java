@@ -1,5 +1,6 @@
 package com.example.wisconsinandroids;
 
+import java.util.Date;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.hardware.Sensor;
@@ -19,26 +20,30 @@ import android.widget.TextView;
 import android.location.*;
 import android.widget.Button;
 
-public class CollectData extends ActionBarActivity implements SensorEventListener, GpsStatus.Listener, 
+public class CollectData extends ActionBarActivity implements SensorEventListener, /*GpsStatus.Listener,*/ 
 GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 {
 	
-	final int ACCURACY_FINE = 1;
-	final int ACCURACY_COARSE = 2;
-	final int ACCURACY_HIGH = 3;
-	final int ACCURACY_MEDIUM = 2;
-	final int ACCURACY_LOW = 1;
-	final int NO_REQUIREMENT = 0;
-	final int POWER_HIGH = 3;
-	final int POWER_MEDIUM = 2;
-	final int POWER_LOW = 1;
+	private static final int ACCURACY_FINE = 1;
+	private static final int ACCURACY_COARSE = 2;
+	private static final int ACCURACY_HIGH = 3;
+	private static final int ACCURACY_MEDIUM = 2;
+	private static final int ACCURACY_LOW = 1;
+	private static final int NO_REQUIREMENT = 0;
+	private static final int POWER_HIGH = 3;
+	private static final int POWER_MEDIUM = 2;
+	private static final int POWER_LOW = 1;
+	private static final boolean useLegacyOrientationSensor = true;
 	
 	private SensorManager mSensorManager;
-	private Sensor mAccelerometer;
+	private Sensor mAccelerometer,mMagneticField, mGyro;
 	private LocationManager mGPS;
-	private TextView AccelX, AccelY, AccelZ, GPS_String, GPS_Status, Latitude, Longitude;
+	private TextView AccelX, AccelY, AccelZ, GPS_String, Latitude, Longitude, 
+		azimuth, pitch, roll, magX, magY, magZ, GPS_Status;
 	private Button startStop;
 	private boolean started = false;
+	private float accelValues[] = new float[3];
+	private float magValues[] = new float[3];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +57,22 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
         
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mGPS = (LocationManager) getSystemService(LOCATION_SERVICE);
-        mGPS.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, (float) 0.5, this);
+        mGPS.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, (float) 0.0, this);
+        
+        if(useLegacyOrientationSensor)
+        {
+        	mGyro = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        	mSensorManager.registerListener(this, mGyro, SensorManager.SENSOR_DELAY_UI);
+        }
+        
+        mMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        mSensorManager.registerListener(this, mMagneticField, SensorManager.SENSOR_DELAY_UI);
+        
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
         
-        mGPS.addGpsStatusListener(this);
+       // mGPS.addGpsStatusListener(this);
         mGPS.addNmeaListener(this);
-        
 
 	}
 
@@ -108,11 +122,13 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 	public void onNmeaReceived(long timestamp, String nmea) {
 		if(!started)
 			return;
+		
+		Date stamp = new Date(timestamp);
 		GPS_String = (TextView) findViewById(R.id.GPS_String);
-		GPS_String.setText("TimeStamp: " + timestamp + "\nGPS String: " + nmea);
+		GPS_String.setText(stamp + "\nGPS String:\n" + nmea);
 	}
 
-	@Override
+	/*@Override
 	public void onGpsStatusChanged(int event) {
 		if(!started)
 			return;
@@ -127,18 +143,69 @@ GpsStatus.NmeaListener, View.OnClickListener, LocationListener
 		default: stat = "?";
 		}
 		GPS_Status.setText("GPS Status: " + stat);
-	}
+	}*/
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() != Sensor.TYPE_ACCELEROMETER || !started)
-            return;
-		AccelX = (TextView) findViewById(R.id.AccelX);
-		AccelY = (TextView) findViewById(R.id.AccelY);
-		AccelZ = (TextView) findViewById(R.id.AccelZ);
-        AccelX.setText("X:" + event.values[0]);
-        AccelY.setText("Y:" + event.values[1]);
-        AccelZ.setText("Z:" + event.values[2]);
+		if(!started)
+			return;
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+		{
+        	AccelX = (TextView) findViewById(R.id.AccelX);
+			AccelY = (TextView) findViewById(R.id.AccelY);
+			AccelZ = (TextView) findViewById(R.id.AccelZ);
+			accelValues[0] = event.values[0];
+			accelValues[1] = event.values[1];
+			accelValues[2] = event.values[2];
+	        AccelX.setText("\tX:" + accelValues[0]);
+	        AccelY.setText("\tY:" + accelValues[1]);
+	        AccelZ.setText("\tZ:" + accelValues[2]); 
+		}
+        if(event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+        {
+        	magX = (TextView) findViewById(R.id.magX);
+			magY = (TextView) findViewById(R.id.magY);
+			magZ = (TextView) findViewById(R.id.magZ);
+			magValues[0] = event.values[0];
+			magValues[1] = event.values[1];
+			magValues[2] = event.values[2];
+	        magX.setText("\tX:" + magValues[0] + "uT");
+	        magY.setText("\tY:" + magValues[1] + "uT");
+	        magZ.setText("\tZ:" + magValues[2] + "uT"); 
+	        if(!useLegacyOrientationSensor)
+	        {
+	        	float orientation[] = new float[9];
+	        	float rotationMatrixR[] = new float[9];
+	        	float rotationMatrixI[] = new float[9];
+	        	if(SensorManager.getRotationMatrix(rotationMatrixR, rotationMatrixI, accelValues, magValues))
+	        	{
+					SensorManager.getOrientation(rotationMatrixR, orientation);
+					for (int i = 0; i < orientation.length; i++)
+					{
+						orientation[i]*=(180/Math.PI);
+					}
+					orientation[0] = (orientation[0] < 0) ? orientation[0] + 360 : orientation[0];
+					azimuth = (TextView) findViewById(R.id.azimuth);
+					pitch = (TextView) findViewById(R.id.pitch);
+					roll = (TextView) findViewById(R.id.roll);	
+			        azimuth.setText("\tAzimuth:" + orientation[0] + "° ");
+			        pitch.setText("\tPitch:" + orientation[1] + "° ");
+			        roll.setText("\tRoll:" + orientation[2] + "° "); 
+	        	}
+	        }
+        }
+        if(useLegacyOrientationSensor)
+        {
+        	if(event.sensor.getType() == Sensor.TYPE_ORIENTATION)
+	        {
+	        	azimuth = (TextView) findViewById(R.id.azimuth);
+				pitch = (TextView) findViewById(R.id.pitch);
+				roll = (TextView) findViewById(R.id.roll);
+		        azimuth.setText("\tAzimuth:" + event.values[0] + "° ");
+		        pitch.setText("\tPitch:" + event.values[1] + "° ");
+		        roll.setText("\tRoll:" + event.values[2] + "° ");      	
+	        }
+        }
 	}
 
 	@Override

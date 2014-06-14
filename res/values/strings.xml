@@ -15,5 +15,15 @@
     <string name="longtitude">Long:</string>
     <string name="longitude">Long:</string>
     <string name="label1">IP Address:</string>
+    <string name="label2">Acceleration:</string>
+    <string name="label3">GPS:</string>
+    <string name="label4">Orientation:</string>
+    <string name="azimuth">Azimuth:</string>
+    <string name="pitch">Pitch:</string>
+    <string name="roll">Roll:</string>
+    <string name="label5">Magnetic Field:</string>
+    <string name="magX">X:</string>
+    <string name="magY">Y:</string>
+    <string name="magZ">Z:</string>
 
 </resources>

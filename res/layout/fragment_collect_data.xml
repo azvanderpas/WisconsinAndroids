@@ -8,19 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.wisconsinandroids.CollectData$PlaceholderFragment" >
 
-    <EditText
-        android:id="@+id/IP_Address_Target"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/AccelZ"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:ems="10"
-        android:inputType="textNoSuggestions" >
-
-        <requestFocus />
-    </EditText>
-
     <TextView
         android:id="@+id/AccelX"
         android:layout_width="wrap_content"
@@ -60,27 +47,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/AccelZ"
         android:text="@string/gps_status"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/GPS_String"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/GPS_Status"
-        android:text="@string/gps_string"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/Latitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/GPS_String"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/GPS_String"
-        android:text="@string/latitude"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/Longitude"
@@ -92,13 +60,25 @@
         android:text="@string/longitude"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <TextView
+        android:id="@+id/Label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/AccelX"
+        android:layout_alignLeft="@+id/AccelX"
+        android:layout_marginBottom="19dp"
+        android:text="@string/label2"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <EditText android:ems="10" android:id="@+id/IP_Address_Target" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_marginBottom="156dp" android:inputType="textNoSuggestions"/>
+
     <Button
         android:id="@+id/StartStopButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="61dp"
         android:text="@string/start_button" />
 
     <TextView
@@ -107,8 +87,112 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/IP_Address_Target"
         android:layout_alignBottom="@+id/IP_Address_Target"
+        android:layout_marginRight="27dp"
         android:layout_toLeftOf="@+id/IP_Address_Target"
         android:text="@string/label1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/GPS_String"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/GPS_Status"
+        android:layout_marginTop="27dp"
+        android:text="@string/gps_string"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/GPS_Status"
+        android:layout_below="@+id/GPS_Status"
+        android:text="@string/label3"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/Latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/GPS_String"
+        android:layout_below="@+id/GPS_String"
+        android:layout_marginTop="19dp"
+        android:text="@string/latitude"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/label4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Longitude"
+        android:layout_marginTop="44dp"
+        android:text="@string/label4"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/azimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label4"
+        android:text="@string/azimuth"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/pitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/azimuth"
+        android:text="@string/pitch"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/pitch"
+        android:text="@string/roll"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/magX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/label5"
+        android:text="@string/magX"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/magY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/magX"
+        android:text="@string/magY"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/magZ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/magY"
+        android:text="@string/magZ"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/label5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/magX"
+        android:layout_below="@+id/roll"
+        android:layout_marginTop="45dp"
+        android:text="@string/label5"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
